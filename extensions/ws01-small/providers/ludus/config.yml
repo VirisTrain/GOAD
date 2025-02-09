@@ -1,0 +1,10 @@
+  - vm_name: "{{ range_id }}-SMALL-WS01"
+    hostname: "{{ range_id }}-WS01"
+    template: win10-21h2-x64-enterprise-template
+    vlan: 10
+    ip_last_octet: 31
+    ram_gb: 6 
+    cpus: 4
+    windows:
+      sysprep: true
+

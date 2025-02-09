@@ -1,0 +1,10 @@
+[default]
+
+ws01 ansible_host=10.8.10.31 dns_domain=dc01 dict_key=ws01
+
+
+[domain]
+ws01
+
+[extensions]
+ws01

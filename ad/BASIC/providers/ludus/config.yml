@@ -1,0 +1,37 @@
+ludus:
+  - vm_name: "{{ range_id }}-DC01"
+    hostname: "{{ range_id }}-DC01"
+    template: win2019-server-x64-template
+    vlan: 10
+    ip_last_octet: 10
+    ram_gb: 8
+    cpus: 4
+    windows:
+      sysprep: true
+  - vm_name: "{{ range_id }}-SRV01"
+    hostname: "{{ range_id }}-SRV01"
+    template: win2019-server-x64-template
+    vlan: 10
+    ip_last_octet: 11
+    ram_gb: 8
+    cpus: 4
+    windows:
+      sysprep: true
+  - vm_name: "{{ range_id }}-SRV02"
+    hostname: "{{ range_id }}-SRV02"
+    template: win2019-server-x64-template
+    vlan: 10
+    ip_last_octet: 12
+    ram_gb: 8
+    cpus: 4
+    windows:
+      sysprep: true
+  - vm_name: "{{ range_id }}-WS01"
+    hostname: "{{ range_id }}-WS01"
+    template: win10-21h2-x64-enterprise-template
+    vlan: 10
+    ip_last_octet: 13
+    ram_gb: 16
+    cpus: 4
+    windows:
+      sysprep: true

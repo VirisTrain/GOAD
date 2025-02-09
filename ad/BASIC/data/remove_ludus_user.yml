@@ -1,0 +1,13 @@
+---
+- name: Disable or Delete Connecting User on Windows
+  hosts: windows
+  gather_facts: yes
+  tasks:
+    - name: Get current user
+      ansible.builtin.set_fact:
+        current_user: "{{ ansible_user }}"
+
+    - name: Delete the current user
+      ansible.windows.win_user:
+        name: "{{ current_user }}"
+        state: absent

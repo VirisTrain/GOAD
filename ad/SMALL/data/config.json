@@ -1,0 +1,203 @@
+{
+"lab" : {
+    "hosts" : {
+        "dc01" : {
+            "hostname" : "dc01",
+            "type" : "dc",
+            "local_admin_password": "8dCT-DJjgScp",
+            "domain" : "small.lab",
+            "path" : "DC=small,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+                    "small\\wsadmin"
+                ],
+                "Remote Desktop Users" : [
+                    "small\\wsrdp"
+                ]
+            },
+            "scripts" : [],
+            "vulns" : ["disable_firewall", "directory", "files", "adcs_templates"],
+            "vulns_vars" : {
+                "directory": {
+                    "setup": "c:\\setup"
+                },
+                "files" : {
+                    "template" : {
+                        "src" : "dc01/templates/",
+                        "dest" : "C:\\setup\\"
+                    }
+                },
+                "adcs_templates": {
+                    "ESC1": {
+                        "template_name" : "ESC1",
+                        "template_file" : "C:\\setup\\ESC1.json"
+                    }
+                }
+            },
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "user1.name"} }
+            }
+        },
+         "srv01" : {
+            "hostname" : "srv01",
+            "type" : "server",
+            "local_admin_password": "EP+xh7Rk6j90",
+            "domain" : "small.lab",
+            "use_laps": false,
+            "path" : "DC=small,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+                    "SMALL\\wsadmin"
+		],
+                "Remote Desktop users" : [
+                    "SMALL\\wsrdp"
+                ]
+            },
+            "vulns" : ["disable_firewall", "enable_credssp_server"]
+        }
+
+    },
+    "domains" : {
+        "small.lab" : {
+            "dc": "dc01",
+            "domain_password" : "8dCT-DJjgScp",
+            "netbios_name": "SMALL",
+            "trust" : "",
+            "laps_path": "OU=Laps,DC=small,DC=lab",
+            "organisation_units" : {
+                "testOU"        : { "path" : "DC=small,DC=lab"}
+            },
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                    "wsadmin" : {
+                        "path" : "CN=Users,DC=small,DC=lab"
+                    },
+		    "wsrdp" : {
+			"path" : "CN=Users,DC=small,DC=lab"
+		    }
+                },
+                "domainlocal" : {
+                    "DomainLocal" : {
+                        "path" : "CN=Users,DC=small,DC=lab"
+                    }
+                }
+            },
+            "multi_domain_groups_member" : {
+            },
+            "acls" : {
+            },
+            "users" : {
+                "user1.name" : {
+                    "firstname"   : "User1",
+                    "surname"     : "Name",
+                    "password"    : "Summer.2025!",
+                    "city"        : "City1",
+                    "description" : "Description 1",
+                    "groups"      : ["wsadmin","wsrdp"],
+                    "path"        : "CN=Users,DC=small,DC=lab"
+                },
+                "user2.name" : {
+                    "firstname"   : "User2",
+                    "surname"     : "Name",
+                    "password"    : "LetmeIn",
+                    "city"        : "City2",
+                    "description" : "Description 2",
+                    "groups"      : ["wsrdp"],
+                    "path"        : "CN=Users,DC=small,DC=lab"
+                },
+		   "olivia.bennett": {
+        "firstname": "Olivia",
+        "surname": "Bennett",
+        "password": "B3nn3t$2025",
+        "city": "New York",
+        "description": "Chief Executive Officer overseeing company strategy and growth.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "liam.harris": {
+        "firstname": "Liam",
+        "surname": "Harris",
+        "password": "H@rr1sPass!",
+        "city": "San Francisco",
+        "description": "Chief Technology Officer responsible for driving technological innovation.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "emma.roberts": {
+        "firstname": "Emma",
+        "surname": "Roberts",
+        "password": "R0b3rt$Tech",
+        "city": "Chicago",
+        "description": "Chief Financial Officer managing budgeting, forecasting, and financial risk.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "noah.miller": {
+        "firstname": "Noah",
+        "surname": "Miller",
+        "password": "M1ll3rSecure",
+        "city": "Seattle",
+        "description": "Director of Operations optimizing internal processes and resource allocation.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "ava.walker": {
+        "firstname": "Ava",
+        "surname": "Walker",
+        "password": "W@lk3r2025",
+        "city": "Austin",
+        "description": "Human Resources Manager focused on talent acquisition and employee engagement.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "logan.james": {
+        "firstname": "Logan",
+        "surname": "James",
+        "password": "J@mesL0gan",
+        "city": "Denver",
+        "description": "Marketing Manager responsible for brand development and market expansion.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "mia.wilson": {
+        "firstname": "Mia",
+        "surname": "Wilson",
+        "password": "W!ls0nMia#",
+        "city": "Los Angeles",
+        "description": "Sales Director driving revenue growth and key client relationships.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "ethan.clark": {
+        "firstname": "Ethan",
+        "surname": "Clark",
+        "password": "Cl@rkSecure",
+        "city": "Dallas",
+        "description": "IT Manager overseeing network infrastructure and technical support.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "sophia.hall": {
+        "firstname": "Sophia",
+        "surname": "Hall",
+        "password": "H@llSophia!",
+        "city": "Miami",
+        "description": "Product Manager coordinating product development and market strategy.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    },
+    "mason.scott": {
+        "firstname": "Mason",
+        "surname": "Scott",
+        "password": "Sc0ttMason$",
+        "city": "Philadelphia",
+        "description": "Project Manager ensuring timely project execution and cross-team collaboration.",
+        "groups": [],
+        "path": "CN=Users,DC=small,DC=lab"
+    }
+            }
+        }
+    }
+}}

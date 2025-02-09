@@ -1,0 +1,13 @@
+{
+    "id": "b346de-small-ludus",
+    "lab": "SMALL",
+    "provider": "ludus",
+    "provisioner": "local",
+    "ip_range": "10.8.10",
+    "extensions": [
+        "ws01-small",
+        "wazuh"
+    ],
+    "status": "installed",
+    "is_default": false
+}

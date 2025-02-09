@@ -1,0 +1,10 @@
+{
+    "id": "8da17e-goad-ludus",
+    "lab": "GOAD",
+    "provider": "ludus",
+    "provisioner": "local",
+    "ip_range": "10.9.10",
+    "extensions": [],
+    "status": "ready for provisioning",
+    "is_default": false
+}

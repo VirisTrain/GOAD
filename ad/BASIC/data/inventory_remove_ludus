@@ -1,0 +1,14 @@
+[all:vars]
+ansible_winrm_transport=ntlm
+ansible_user=localuser
+ansible_password=password
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_operation_timeout_sec=400
+ansible_winrm_read_timeout_sec=500
+
+[windows]
+10.2.10.10
+10.2.10.11
+10.2.10.12
+10.2.10.13

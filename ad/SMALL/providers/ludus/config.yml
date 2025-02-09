@@ -1,0 +1,20 @@
+ludus:
+  - vm_name: "{{ range_id }}-SMALL-DC01"
+    hostname: "{{ range_id }}-DC01"
+    template: win2019-server-x64-template
+    vlan: 10
+    ip_last_octet: 10
+    ram_gb: 6
+    cpus: 3
+    windows:
+      sysprep: true
+  - vm_name: "{{ range_id }}-SMALL-SRV01"
+    hostname: "{{ range_id }}-SRV01"
+    template: win2022-server-x64-template
+    vlan: 10
+    ip_last_octet: 11
+    ram_gb: 6
+    cpus: 3
+    windows:
+      sysprep: true
+

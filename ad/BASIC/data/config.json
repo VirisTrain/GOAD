@@ -1,0 +1,179 @@
+{
+"lab" : {
+    "hosts" : {
+        "dc01" : {
+            "hostname" : "dc01",
+            "type" : "dc",
+            "local_admin_password": "Q7i97ZQk79_6UPSD4aBz59nCP2GIyCiEp$V5r$viyGsIo!4KBp0m15es06W98539",
+            "domain" : "basic.lab",
+            "path" : "DC=basic,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
+            },
+            "scripts" : ["UnconstrainedDelegation.ps1"],
+            "vulns" : ["administrator_folder","files"],
+            "vulns_vars" : {
+                "files" : {
+			"flag": {
+				"src": "flags/dc01.txt",
+				"dest": "c:\\users\\administrator\\desktop\\flag.txt"
+			}
+                }
+            },
+            "security": [],
+            "security_vars": {
+            }
+        },
+        "srv01" : {
+            "hostname" : "srv01",
+            "type" : "server",
+            "local_admin_password": "JIiMqp8$$nerFcfeW_DV_xrFxk8qh2GnYAjhCzNPFvLIh9SPFh3nqcBqeoTZaJPn",
+            "domain" : "basic.lab",
+            "path" : "DC=basic,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+			"basic\\charlie"
+                ],
+		"Remote Management Users" : [
+			"basic\\alice"
+		]
+            },
+            "scripts" : ["SetupSRV01.ps1","ServiceEnum.ps1"],
+            "vulns" : ["directory","openshares","files","disable_firewall","credentials"],
+            "vulns_vars" : {
+                "directory": {
+			"service": "C:\\Program Files\\Custom Service1"
+                },
+                "files" : {
+			"hint_in_shares": {
+				"src": "srv01/hint_in_shares.txt",
+				"dest": "C:\\administrator.txt"
+			},
+			"unquoted_binary": {
+				"src": "srv01/Service 1.exe",
+				"dest": "C:\\Program Files\\Service 1.exe"
+			}
+                },
+		"credentials": {
+			"TERMSRV/srv02": {
+				"username": "basic\\bob",
+				"secret": "ThoughtfulCow292",
+				"runas": "basic\\charlie",
+				"runas_password": "FretfulFiddler314"
+			}
+		}
+            },
+            "security": [],
+            "security_vars": {
+            }
+	},
+        "srv02" : {
+            "hostname" : "srv02",
+            "type" : "server",
+            "local_admin_password": "$4daDwNIkHYl89ClE_32GV2ivCWnonQQ3tzvs!rmwtM5Pek!siLMje1-DbSVpVPl",
+            "domain" : "basic.lab",
+            "path" : "DC=basic,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+			"basic\\Manager"
+                ],
+                "Remote Desktop Users" : [
+			"basic\\Manager"
+                ]
+            },
+            "scripts" : ["SetupSRV02.ps1"],
+	    "vulns" : [],
+            "vulns_vars" : {
+                "directory": {
+                },
+                "files" : {
+                }
+            },
+            "security": [],
+            "security_vars": {
+            }
+        },
+        "ws01" : {
+            "hostname" : "ws01",
+            "type" : "workstation",
+            "local_admin_password": "X0Yh20DW_KYTz!z3Gy7Vl3iDy$3QBD1lX6VmrM1JR22CWQ$zbbYpy7r0sDdepO9U",
+            "domain" : "basic.lab",
+            "path" : "DC=basic,DC=lab",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
+            },
+            "scripts" : [],
+	    "vulns" : ["administrator_folder","files"],
+            "vulns_vars" : {
+                "files" : {
+			"flag": {
+				"src": "flags/ws01.txt",
+				"dest": "c:\\users\\administrator\\desktop\\flag.txt"
+			}
+                }
+            },
+            "security": [],
+            "security_vars": {
+            }
+        }
+    },
+    "domains" : {
+        "basic.lab" : {
+            "dc": "dc01",
+            "domain_password" : "Q7i97ZQk79_6UPSD4aBz59nCP2GIyCiEp$V5r$viyGsIo!4KBp0m15es06W98539",
+            "netbios_name": "BASIC",
+            "trust" : "",
+            "laps_path": "OU=Laps,DC=basic,DC=lab",
+            "organisation_units" : {
+            },
+            "groups" : {
+                "universal" : {},
+                "global" : {
+			"Manager": {
+				"managed_by": "bob",
+				"path": "CN=Users,DC=basic,DC=lab"
+			}
+                },
+                "domainlocal" : {}
+            },
+            "multi_domain_groups_member" : {
+            },
+            "acls" : {
+            },
+            "users" : {
+		    "alice": {
+		    	"firstname": "alice",
+			"surname": "basic",
+			"password": "WeeklyTaste34",
+			"description": "programer",
+			"groups": [],
+			"path": "CN=Users,DC=basic,DC=lab"
+		    },
+		    "bob": {
+		    	"firstname": "bob",
+			"surname": "basic",
+			"password": "ThoughtfulCow292",
+			"description": "manager",
+			"groups": ["Manager"],
+			"path": "CN=Users,DC=basic,DC=lab"
+		    },
+		    "charlie": {
+		    	"firstname": "charlie",
+			"surname": "basic",
+			"password": "FretfulFiddler314",
+			"description": "external consultant",
+			"groups": [],
+			"path": "CN=Users,DC=basic,DC=lab"
+		    }
+            }
+        }
+    }
+}}
